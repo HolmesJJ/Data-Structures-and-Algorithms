@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Data-Structures-and-Algorithms/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Data-Structures-and-Algorithms/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Data-Structures-and-Algorithms/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/Data-Structures-and-Algorithms/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Data-Structures-and-Algorithms/css/main.css">
+
+
+<link rel="stylesheet" href="/Data-Structures-and-Algorithms/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"holmesjj.github.io","root":"/Data-Structures-and-Algorithms/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="对 LeetCode 常用算法的整理，更多的内容可以参考 LeetCode整理。 二分查找使用条件   显示答案   排序数组(30-40%是二分) 当面试官要求你找一个比O(n)更小的时间复杂度算法的时候(99%) 找到数组中的一个分割位置，使得左半部分满足某个条件，右半部分不满足(100%) 找到一个最大&#x2F;最小的值使得某个条件被满足(90%)    典型例题 4. Median of">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码模板">
+<meta property="og:url" content="https://holmesjj.github.io/Data-Structures-and-Algorithms/2022/12/05/code-template/index.html">
+<meta property="og:site_name" content="Code Training">
+<meta property="og:description" content="对 LeetCode 常用算法的整理，更多的内容可以参考 LeetCode整理。 二分查找使用条件   显示答案   排序数组(30-40%是二分) 当面试官要求你找一个比O(n)更小的时间复杂度算法的时候(99%) 找到数组中的一个分割位置，使得左半部分满足某个条件，右半部分不满足(100%) 找到一个最大&#x2F;最小的值使得某个条件被满足(90%)    典型例题 4. Median of">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-05T14:56:16.696Z">
+<meta property="article:modified_time" content="2022-12-05T14:56:33.223Z">
+<meta property="article:author" content="JJ &amp; TY">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://holmesjj.github.io/Data-Structures-and-Algorithms/2022/12/05/code-template/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>代码模板 | Code Training</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Data-Structures-and-Algorithms/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Code Training</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/Data-Structures-and-Algorithms/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/Data-Structures-and-Algorithms/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://holmesjj.github.io/Data-Structures-and-Algorithms/2022/12/05/code-template/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Data-Structures-and-Algorithms/images/avatar.gif">
+      <meta itemprop="name" content="JJ & TY">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code Training">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          代码模板
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-05 22:56:16 / 修改时间：22:56:33" itemprop="dateCreated datePublished" datetime="2022-12-05T22:56:16+08:00">2022-12-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>对 <a target="_blank" rel="noopener" href="https://leetcode.com/problemset/algorithms/">LeetCode</a> 常用算法的整理，更多的内容可以参考 <a target="_blank" rel="noopener" href="https://github.com/HolmesJJ/LeetCode">LeetCode整理</a>。</p>
+<h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><h3 id="使用条件"><a href="#使用条件" class="headerlink" title="使用条件"></a>使用条件</h3><iframe src="https://holmesjj.github.io/code-training/#/mrq/binarySearch" width="100%" height="270" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+<details>
+<summary>显示答案</summary>
+
+<ul>
+<li>排序数组(30-40%是二分)</li>
+<li>当面试官要求你找一个比O(n)更小的时间复杂度算法的时候(99%)</li>
+<li>找到数组中的一个分割位置，使得左半部分满足某个条件，右半部分不满足(100%)</li>
+<li>找到一个最大&#x2F;最小的值使得某个条件被满足(90%)</li>
+</ul>
+</details>
+
+<h3 id="典型例题"><a href="#典型例题" class="headerlink" title="典型例题"></a>典型例题</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/median-of-two-sorted-arrays/">4. Median of Two Sorted Arrays</a></li>
+<li>矩阵二分查找 <a href="74.%20Search%20a%202D%20Matrix.md">74. Search a 2D Matrix</a></li>
+<li>二叉树与二分查找的结合 <a href="222.%20Count%20Complete%20Tree%20Nodes.md">222. Count Complete Tree Nodes</a></li>
+</ul>
+<h3 id="非递归版代码"><a href="#非递归版代码" class="headerlink" title="非递归版代码"></a>非递归版代码</h3><iframe src="https://holmesjj.github.io/code-training/#/code/binarySearchIteration" width="100%" height="430" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+<details>
+<summary>显示答案</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Corner Case 处理</span></span><br><span class="line"><span class="keyword">if</span> (nums == <span class="literal">null</span> || nums.length == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 若找不到target，则返回比target大一点的值的位置</span></span><br><span class="line"><span class="comment">// 若target值重复，则始终返回第一个target的位置；若要返回最后一个target的位置，则需要修改为nums[mid] &lt;= target</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">binarySearch</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">low</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">high</span> <span class="operator">=</span> nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> low + (high - low) / <span class="number">2</span>;</span><br><span class="line">        <span class="comment">// | ---------- | --target-- |</span></span><br><span class="line">        <span class="keyword">if</span> (nums[mid] &lt; target) &#123;</span><br><span class="line">            low = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// | --target-- | ---------- |</span></span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            high = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> low;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 找不到target</span></span><br><span class="line"><span class="type">int</span> <span class="variable">pos</span> <span class="operator">=</span> binarySearch(nums, target);</span><br><span class="line"><span class="keyword">if</span> (pos == nums.length || nums[pos] &gt; target) &#123;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<h3 id="递归版代码"><a href="#递归版代码" class="headerlink" title="递归版代码"></a>递归版代码</h3><iframe src="https://holmesjj.github.io/code-training/#/code/BinarySearchRecursion" width="100%" height="430" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+<details>
+<summary>显示答案</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Corner Case 处理</span></span><br><span class="line"><span class="keyword">if</span> (nums == <span class="literal">null</span> || nums.length == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 若找不到target，则返回比target大一点的值的位置</span></span><br><span class="line"><span class="comment">// 若target值重复，则始终返回第一个target的位置；若要返回最后一个target的位置，则需要修改为nums[mid] &lt;= target</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">binarySearch</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> target, <span class="type">int</span> low, <span class="type">int</span> high)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (low &gt; high) &#123;</span><br><span class="line">        <span class="keyword">return</span> low;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> low + (high - low) / <span class="number">2</span>;</span><br><span class="line">    <span class="comment">// | ---------- | --target-- |</span></span><br><span class="line">    <span class="keyword">if</span> (nums[mid] &lt; target) &#123;</span><br><span class="line">        <span class="keyword">return</span> binarySearch(nums, target, mid + <span class="number">1</span>, high);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// | --target-- | ---------- |</span></span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> binarySearch(nums, target, low, mid - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 找不到target</span></span><br><span class="line"><span class="type">int</span> <span class="variable">pos</span> <span class="operator">=</span> binarySearch(nums, target, <span class="number">0</span>, nums.length - <span class="number">1</span>);</span><br><span class="line"><span class="keyword">if</span> (pos == nums.length || nums[pos] &gt; target) &#123;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<h3 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h3><details>
+<summary>显示答案</summary>
+
+<ul>
+<li>时间复杂度：O(logn)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+</details>
+
+<h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><ul>
+<li>深度Depth从上到下，root的深度为0</li>
+<li>高度Height从下到上，leaf的高度为0</li>
+<li>二叉树每层结点数 &#x3D; 2^Height &#x3D; 2^Depth</li>
+<li>二叉树总结点 &#x3D; 2^(Height + 1) - 1 &#x3D; 2^(Depth + 1) - 1</li>
+</ul>
+<h2 id="广度优先遍历-BFS"><a href="#广度优先遍历-BFS" class="headerlink" title="广度优先遍历(BFS)"></a>广度优先遍历(BFS)</h2><h3 id="典型例题-1"><a href="#典型例题-1" class="headerlink" title="典型例题"></a>典型例题</h3><ul>
+<li>灵活运用层次遍历 <a href="662.%20Maximum%20Width%20of%20Binary%20Tree.md">662. Maximum Width of Binary Tree</a></li>
+<li>深入理解BFS的特性，图与层次遍历的结合 <a href="934.%20Shortest%20Bridge.md">934. Shortest Bridge</a></li>
+</ul>
+<h3 id="使用条件-1"><a href="#使用条件-1" class="headerlink" title="使用条件"></a>使用条件</h3><iframe src="https://holmesjj.github.io/code-training/#/mrq/bfs" width="100%" height="270" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+<details>
+<summary>显示答案</summary>
+
+<ul>
+<li>拓扑排序(100%)</li>
+<li>出现连通块的关键词(100%)</li>
+<li>分层遍历(100%)</li>
+<li>简单图最短路径(100%)</li>
+<li>给定一个变换规则，从初始状态变到终止状态最少几步(100%)</li>
+</ul>
+</details>
+
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><iframe src="https://holmesjj.github.io/code-training/#/code/BFS" width="100%" height="380" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+<details>
+<summary>显示答案</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回类型根据题目要求决定</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">bfs</span><span class="params">(<span class="type">char</span>[][] grid)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> grid.length;</span><br><span class="line">    <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> grid[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">if</span> (m == <span class="number">0</span> || n == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 8个方向</span></span><br><span class="line">    <span class="type">int</span>[][] dirs = &#123;&#123;-<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, -<span class="number">1</span>&#125;, &#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;-<span class="number">1</span>, -<span class="number">1</span>&#125;, &#123;-<span class="number">1</span>, <span class="number">1</span>&#125;, &#123;<span class="number">1</span>, -<span class="number">1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">1</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 已访问结点</span></span><br><span class="line">    <span class="type">boolean</span>[][] visited = <span class="keyword">new</span> <span class="title class_">boolean</span>[m][n];</span><br><span class="line">    <span class="comment">// 源点被访问</span></span><br><span class="line">    visited[<span class="number">0</span>][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 队列记录结点的坐标(i, j)</span></span><br><span class="line">    Queue&lt;<span class="type">int</span>[]&gt; qn = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">    <span class="comment">// 从源点开始</span></span><br><span class="line">    qn.add(<span class="keyword">new</span> <span class="title class_">int</span>[]&#123;<span class="number">0</span>, <span class="number">0</span>&#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// BFS遍历</span></span><br><span class="line">    <span class="keyword">while</span> (!qn.isEmpty()) &#123;</span><br><span class="line">        <span class="type">int</span>[] node = qn.poll();</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> node[<span class="number">0</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> node[<span class="number">1</span>];</span><br><span class="line">        <span class="comment">// 遍历与当前结点相邻的结点</span></span><br><span class="line">        <span class="comment">// 8个方向的相邻结点</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">dir</span> <span class="operator">=</span> <span class="number">0</span>; dir &lt; dirs.length; dir++) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">ni</span> <span class="operator">=</span> i + dirs[dir][<span class="number">0</span>];</span><br><span class="line">            <span class="type">int</span> <span class="variable">nj</span> <span class="operator">=</span> j + dirs[dir][<span class="number">1</span>];</span><br><span class="line">            <span class="comment">// 在grid中</span></span><br><span class="line">            <span class="keyword">if</span> (ni &gt;= <span class="number">0</span> &amp;&amp; ni &lt; m &amp;&amp; nj &gt;= <span class="number">0</span> &amp;&amp; nj &lt; n <span class="comment">/* &amp;&amp; 是否相邻 */</span>) &#123;</span><br><span class="line">                <span class="comment">// 排除已经访问过的结点</span></span><br><span class="line">                <span class="comment">// 把符合条件的结点入队</span></span><br><span class="line">                <span class="keyword">if</span> (visited[ni][nj] == <span class="literal">false</span> <span class="comment">/* &amp;&amp; 其它条件 */</span>) &#123;</span><br><span class="line">                    qn.add(<span class="keyword">new</span> <span class="title class_">int</span>[]&#123;ni, nj&#125;);</span><br><span class="line">                    <span class="comment">// 结点被访问</span></span><br><span class="line">                    visited[ni][nj] = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<h3 id="树的层次遍历代码"><a href="#树的层次遍历代码" class="headerlink" title="树的层次遍历代码"></a>树的层次遍历代码</h3><iframe src="https://holmesjj.github.io/code-training/#/code/levelOrder" width="100%" height="380" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+<details>
+<summary>显示答案</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="title function_">levelOrder</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; levels = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> levels;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Queue&lt;TreeNode&gt; qn = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">    qn.add(root);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// BFS遍历</span></span><br><span class="line">    <span class="keyword">while</span> (!qn.isEmpty()) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">size</span> <span class="operator">=</span> qn.size();</span><br><span class="line">        <span class="type">TreeNode</span> <span class="variable">node</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="comment">// 一层一层遍历，一个for循环代表一层</span></span><br><span class="line">        List&lt;Integer&gt; level = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">            node = qn.poll();</span><br><span class="line">            level.add(node.val);</span><br><span class="line">            <span class="keyword">if</span> (node.left != <span class="literal">null</span>) &#123;</span><br><span class="line">                qn.add(node.left);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (node.right != <span class="literal">null</span>) &#123;</span><br><span class="line">                qn.add(node.right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        levels.add(level);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> levels;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<h3 id="复杂度-1"><a href="#复杂度-1" class="headerlink" title="复杂度"></a>复杂度</h3><details>
+<summary>显示答案</summary>
+
+<ul>
+<li>时间复杂度：O(E + V)</li>
+<li>空间复杂度：O(V)</li>
+</ul>
+</details>
+
+<h2 id="深度优先遍历-DFS"><a href="#深度优先遍历-DFS" class="headerlink" title="深度优先遍历(DFS)"></a>深度优先遍历(DFS)</h2><h3 id="使用条件-2"><a href="#使用条件-2" class="headerlink" title="使用条件"></a>使用条件</h3><iframe src="https://holmesjj.github.io/code-training/#/mrq/dfs" width="100%" height="270" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+<details>
+<summary>显示答案</summary>
+
+<ul>
+<li>BFS不能解决的问题，否则很容易超时</li>
+<li>找满足某个条件的所有方案(99%)</li>
+<li>二叉树Binary Tree的问题(90%)</li>
+<li>组合问题(95%)<ul>
+<li>问题模型：求出所有满足条件的”组合”</li>
+<li>判断条件：组合中的元素是顺序”无关”的</li>
+</ul>
+</li>
+<li>排列问题(95%)<ul>
+<li>问题模型：求出所有满足条件的”排列”</li>
+<li>判断条件：组合中的元素是顺序”相关”的</li>
+</ul>
+</li>
+</ul>
+</details>
+
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><iframe src="https://holmesjj.github.io/code-training/#/code/dfs" width="100%" height="380" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+<details>
+<summary>显示答案</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回类型根据题目要求决定</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">char</span>[][] grid)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> grid.length;</span><br><span class="line">    <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> grid[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">if</span> (m == <span class="number">0</span> || n == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 8个方向</span></span><br><span class="line">    <span class="type">int</span>[][] dirs = &#123;&#123;-<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, -<span class="number">1</span>&#125;, &#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;-<span class="number">1</span>, -<span class="number">1</span>&#125;, &#123;-<span class="number">1</span>, <span class="number">1</span>&#125;, &#123;<span class="number">1</span>, -<span class="number">1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">1</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 已访问结点</span></span><br><span class="line">    <span class="type">boolean</span>[][] visited = <span class="keyword">new</span> <span class="title class_">boolean</span>[m][n];</span><br><span class="line">    <span class="comment">// 源点被访问</span></span><br><span class="line">    visited[<span class="number">0</span>][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 栈记录结点的坐标(i, j)</span></span><br><span class="line">    Stack&lt;<span class="type">int</span>[]&gt; sn = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;();</span><br><span class="line">    <span class="comment">// 从源点开始</span></span><br><span class="line">    sn.add(<span class="keyword">new</span> <span class="title class_">int</span>[]&#123;<span class="number">0</span>, <span class="number">0</span>&#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// DFS遍历</span></span><br><span class="line">    <span class="keyword">while</span> (!sn.isEmpty()) &#123;</span><br><span class="line">        <span class="comment">// 从栈中拿出来第一个结点，但没有弹出</span></span><br><span class="line">        <span class="type">int</span>[] node = sn.peek();</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> node[<span class="number">0</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> node[<span class="number">1</span>];</span><br><span class="line">        <span class="comment">// 记录当前与结点的相邻的结点是否都已经被访问过</span></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">isAllVisited</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="comment">// 遍历与当前结点相邻的结点</span></span><br><span class="line">        <span class="comment">// 8个方向的相邻结点</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">dir</span> <span class="operator">=</span> <span class="number">0</span>; dir &lt; dirs.length; dir++) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">ni</span> <span class="operator">=</span> i + dirs[dir][<span class="number">0</span>];</span><br><span class="line">            <span class="type">int</span> <span class="variable">nj</span> <span class="operator">=</span> j + dirs[dir][<span class="number">1</span>];</span><br><span class="line">            <span class="comment">// 在grid中</span></span><br><span class="line">            <span class="keyword">if</span> (ni &gt;= <span class="number">0</span> &amp;&amp; ni &lt; m &amp;&amp; nj &gt;= <span class="number">0</span> &amp;&amp; nj &lt; n <span class="comment">/* &amp;&amp; 是否相邻 */</span>) &#123;</span><br><span class="line">                <span class="comment">// 排除已经访问过的结点</span></span><br><span class="line">                <span class="comment">// 把符合条件的结点入队</span></span><br><span class="line">                <span class="keyword">if</span> (visited[ni][nj] == <span class="literal">false</span> <span class="comment">/* &amp;&amp; 其它条件 */</span>) &#123;</span><br><span class="line">                    isAllVisited = <span class="literal">false</span>;</span><br><span class="line">                    sn.add(<span class="keyword">new</span> <span class="title class_">int</span>[]&#123;ni, nj&#125;);</span><br><span class="line">                    <span class="comment">// 结点被访问</span></span><br><span class="line">                    visited[ni][nj] = <span class="literal">true</span>;</span><br><span class="line">                    <span class="comment">// 有这个break才是正确的DFS，但是没有这个break可以加快速度</span></span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 当前与结点的相邻的结点都已经被访问过，当前结点可以弹出</span></span><br><span class="line">        <span class="keyword">if</span> (isAllVisited) &#123;</span><br><span class="line">            sn.pop();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<h3 id="复杂度-2"><a href="#复杂度-2" class="headerlink" title="复杂度"></a>复杂度</h3><details>
+<summary>显示答案</summary>
+
+<ul>
+<li>时间复杂度：O(E + V)</li>
+<li>空间复杂度：O(V)</li>
+</ul>
+</details>
+
+<h2 id="迪杰斯特拉-Dijkstra’s"><a href="#迪杰斯特拉-Dijkstra’s" class="headerlink" title="迪杰斯特拉(Dijkstra’s)"></a>迪杰斯特拉(Dijkstra’s)</h2><h3 id="使用条件-3"><a href="#使用条件-3" class="headerlink" title="使用条件"></a>使用条件</h3><iframe src="https://holmesjj.github.io/code-training/#/mrq/dijkstra" width="100%" height="270" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+<details>
+<summary>显示答案</summary>
+
+<ul>
+<li>最短路径问题(100%)</li>
+<li>不存在负边权</li>
+</ul>
+</details>
+
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><iframe src="https://holmesjj.github.io/code-training/#/code/dijkstra" width="100%" height="380" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+<details>
+<summary>显示答案</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回类型根据题目要求决定</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">dijkstra</span><span class="params">(<span class="type">char</span>[][] grid)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> grid.length;</span><br><span class="line">    <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> grid[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">if</span> (m == <span class="number">0</span> || n == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 8个方向</span></span><br><span class="line">    <span class="type">int</span>[][] dirs = &#123;&#123;-<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, -<span class="number">1</span>&#125;, &#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;-<span class="number">1</span>, -<span class="number">1</span>&#125;, &#123;-<span class="number">1</span>, <span class="number">1</span>&#125;, &#123;<span class="number">1</span>, -<span class="number">1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">1</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化结点到源点的最短距离为无穷大</span></span><br><span class="line">    <span class="type">int</span>[][] dists = <span class="keyword">new</span> <span class="title class_">int</span>[m][n];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; dists.length; i++) &#123;</span><br><span class="line">        Arrays.fill(dists[i], Integer.MAX_VALUE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Dijkstra找到最短距离</span></span><br><span class="line">    <span class="comment">// 源点到源点自己的距离为1</span></span><br><span class="line">    dists[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化结点的父结点</span></span><br><span class="line">    <span class="type">int</span>[][][] parents = <span class="keyword">new</span> <span class="title class_">int</span>[m][n][<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 已访问结点</span></span><br><span class="line">    <span class="type">boolean</span>[][] visited = <span class="keyword">new</span> <span class="title class_">boolean</span>[m][n];</span><br><span class="line">    <span class="comment">// 源点被访问</span></span><br><span class="line">    visited[<span class="number">0</span>][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 由于所有边权都是一样，不需要使用优先队列PriorityQueue</span></span><br><span class="line">    <span class="comment">// 队列记录结点的坐标(i, j)</span></span><br><span class="line">    Queue&lt;<span class="type">int</span>[]&gt; qn = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">    <span class="comment">// 从源点开始</span></span><br><span class="line">    qn.add(<span class="keyword">new</span> <span class="title class_">int</span>[]&#123;<span class="number">0</span>, <span class="number">0</span>&#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// BFS遍历</span></span><br><span class="line">    <span class="keyword">while</span> (!qn.isEmpty()) &#123;</span><br><span class="line">        <span class="comment">// 获取当前优先队列中结点到源点距离最短的结点</span></span><br><span class="line">        <span class="type">int</span>[] node = qn.poll();</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> node[<span class="number">0</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> node[<span class="number">1</span>];</span><br><span class="line">        <span class="comment">// 从源点到当前结点的距离最小的结点被弹出时，才标记当前结点为被访问</span></span><br><span class="line">        visited[i][j] = <span class="literal">true</span>;</span><br><span class="line">        <span class="comment">// 遍历与当前结点相邻的结点</span></span><br><span class="line">        <span class="comment">// 8个方向的相邻结点</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">dir</span> <span class="operator">=</span> <span class="number">0</span>; dir &lt; dirs.length; dir++) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">ni</span> <span class="operator">=</span> i + dirs[dir][<span class="number">0</span>];</span><br><span class="line">            <span class="type">int</span> <span class="variable">nj</span> <span class="operator">=</span> j + dirs[dir][<span class="number">1</span>];</span><br><span class="line">            <span class="comment">// 在grid中</span></span><br><span class="line">            <span class="keyword">if</span> (ni &gt;= <span class="number">0</span> &amp;&amp; ni &lt; m &amp;&amp; nj &gt;= <span class="number">0</span> &amp;&amp; nj &lt; n <span class="comment">/* &amp;&amp; 是否相邻 */</span>) &#123;</span><br><span class="line">                <span class="comment">// 排除已经访问过的结点</span></span><br><span class="line">                <span class="comment">// 更新结点到源点距离的最短距离 或 直接加入到优先队列</span></span><br><span class="line">                <span class="comment">// 更新父结点</span></span><br><span class="line">                <span class="comment">// 权重为1</span></span><br><span class="line">                <span class="keyword">if</span> (visited[ni][nj] == <span class="literal">false</span> &amp;&amp; dists[ni][nj] &gt; dists[i][j] + <span class="number">1</span> <span class="comment">/* &amp;&amp; 其它条件 */</span>) &#123;</span><br><span class="line">                    qn.add(<span class="keyword">new</span> <span class="title class_">int</span>[]&#123;ni, nj&#125;);</span><br><span class="line">                    parents[ni][nj] = <span class="keyword">new</span> <span class="title class_">int</span>[]&#123;i, j&#125;;</span><br><span class="line">                    <span class="comment">// 更新最短距离</span></span><br><span class="line">                    dists[ni][nj] = dists[i][j] + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 栈记录父结点的坐标</span></span><br><span class="line">    Stack&lt;<span class="type">int</span>[]&gt; sn = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;();</span><br><span class="line">    <span class="comment">// 最后一个结点的坐标(m - 1, n - 1)</span></span><br><span class="line">    sn.add(<span class="keyword">new</span> <span class="title class_">int</span>[]&#123;m - <span class="number">1</span>, n - <span class="number">1</span>&#125;);</span><br><span class="line">    <span class="comment">// 最后一个结点的父结点坐标</span></span><br><span class="line">    <span class="type">int</span>[] parent = parents[m - <span class="number">1</span>][n - <span class="number">1</span>];</span><br><span class="line">    sn.add(parent);</span><br><span class="line">    <span class="keyword">while</span> (parent[<span class="number">0</span>] != <span class="number">0</span> || parent[<span class="number">1</span>] != <span class="number">0</span>) &#123;</span><br><span class="line">        parent = parents[parent[<span class="number">0</span>]][parent[<span class="number">1</span>]];</span><br><span class="line">        sn.add(parent);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">&quot;The shortest distance is &quot;</span> + dists[m - <span class="number">1</span>][n - <span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">while</span> (!sn.isEmpty()) &#123;</span><br><span class="line">        <span class="type">int</span>[] node = sn.pop();</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> node[<span class="number">0</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> node[<span class="number">1</span>];</span><br><span class="line">        <span class="comment">// 打印最后一个结点</span></span><br><span class="line">        <span class="keyword">if</span> (sn.isEmpty()) &#123;</span><br><span class="line">            System.out.print(<span class="string">&quot;(&quot;</span> + i + <span class="string">&quot;, &quot;</span> + j + <span class="string">&quot;)&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.print(<span class="string">&quot;(&quot;</span> + i + <span class="string">&quot;, &quot;</span> + j + <span class="string">&quot;), &quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<h3 id="复杂度-3"><a href="#复杂度-3" class="headerlink" title="复杂度"></a>复杂度</h3><details>
+<summary>显示答案</summary>
+
+<ul>
+<li>时间复杂度：O(E + VlogV)</li>
+<li>空间复杂度：O(V)</li>
+</ul>
+</details>
+
+<h2 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h2><h3 id="使用条件-4"><a href="#使用条件-4" class="headerlink" title="使用条件"></a>使用条件</h3><iframe src="https://holmesjj.github.io/code-training/#/mrq/backtracking" width="100%" height="270" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+<details>
+<summary>显示答案</summary>
+
+<ul>
+<li>排列(100%)</li>
+<li>组合(100%)</li>
+<li>切割(100%)</li>
+<li>子集(100%)</li>
+<li>棋盘(100%)</li>
+</ul>
+</details>
+
+<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><iframe src="https://holmesjj.github.io/code-training/#/code/backtracking" width="100%" height="450" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+<details>
+<summary>显示答案</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// results是最终结果</span></span><br><span class="line">List&lt;List&lt;Integer&gt;&gt; results = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"><span class="comment">// result是其中一个结果</span></span><br><span class="line">List&lt;Integer&gt; result = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">backtracking(results, result);</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">backtracking</span><span class="params">(List&lt;List&lt;Integer&gt;&gt; results, List&lt;Integer&gt; result <span class="comment">/* 其它条件和参数 */</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="comment">/* 终止条件 */</span>) &#123;</span><br><span class="line">        <span class="comment">// 收集结果，需要创建一个新的对象</span></span><br><span class="line">        results.add(<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(result));</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 遍历集合元素</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="comment">/* 集合元素 */</span>) &#123;</span><br><span class="line">        <span class="comment">// 处理result</span></span><br><span class="line">        result.add();</span><br><span class="line">        backtracking(results, result <span class="comment">/* 其它条件和参数 */</span>);</span><br><span class="line">        <span class="comment">// 回溯操作</span></span><br><span class="line">        result.remove(result.size() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<h3 id="复杂度-4"><a href="#复杂度-4" class="headerlink" title="复杂度"></a>复杂度</h3><details>
+<summary>显示答案</summary>
+
+<ul>
+<li>时间复杂度：<ul>
+<li>Hamiltonian Cycle：O(n!)</li>
+<li>WordBreak and StringSegment：O(2^n)</li>
+<li>NQueens：O(n!)</li>
+</ul>
+</li>
+<li>空间复杂度：O(n)</li>
+</ul>
+</details>
+
+<h2 id="List-和-Array"><a href="#List-和-Array" class="headerlink" title="List 和 Array"></a><code>List</code> 和 <code>Array</code></h2><iframe src="https://holmesjj.github.io/code-training/#/code/listArray" width="100%" height="380" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+<details>
+<summary>显示答案</summary>
+
+<h3 id="List-lt-Integer-gt-to-int"><a href="#List-lt-Integer-gt-to-int" class="headerlink" title="List&lt;Integer&gt; to int[]"></a><code>List&lt;Integer&gt;</code> to <code>int[]</code></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] array = list.stream().mapToInt(i -&gt; i).toArray();</span><br><span class="line"><span class="comment">// OR</span></span><br><span class="line"><span class="type">int</span>[] array = list.stream().mapToInt(Integer::intValue).toArray();</span><br></pre></td></tr></table></figure>
+
+<h3 id="反转"><a href="#反转" class="headerlink" title="反转"></a>反转</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// List</span></span><br><span class="line">Collections.reverse(list);</span><br><span class="line"><span class="comment">// Array</span></span><br><span class="line">Collections.reverse(Arrays.asList(arr));</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a><code>HashMap</code></h2><iframe src="https://holmesjj.github.io/code-training/#/code/hashMap" width="100%" height="380" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+<details>
+<summary>显示答案</summary>
+
+<h3 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Map.Entry&lt;Integer, Integer&gt; entry : map.entrySet()) &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">key</span> <span class="operator">=</span> entry.getKey();</span><br><span class="line">    <span class="type">int</span> <span class="variable">value</span> <span class="operator">=</span> entry.getValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="记录元素出现的次数"><a href="#记录元素出现的次数" class="headerlink" title="记录元素出现的次数"></a>记录元素出现的次数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">    map.put(nums[i], map.getOrDefault(nums[i], <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<h2 id="HashMap-和-List"><a href="#HashMap-和-List" class="headerlink" title="HashMap 和 List"></a><code>HashMap</code> 和 <code>List</code></h2><iframe src="https://holmesjj.github.io/code-training/#/code/hashMapList" width="100%" height="380" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+<details>
+<summary>显示答案</summary>
+
+<h3 id="HashMap-lt-String-String-gt-to-List-lt-String-gt"><a href="#HashMap-lt-String-String-gt-to-List-lt-String-gt" class="headerlink" title="HashMap&lt;String, String&gt; to List&lt;String&gt;"></a><code>HashMap&lt;String, String&gt;</code> to <code>List&lt;String&gt;</code></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(map.values());</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<h2 id="Math"><a href="#Math" class="headerlink" title="Math"></a><code>Math</code></h2><iframe src="https://holmesjj.github.io/code-training/#/code/math" width="100%" height="380" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+<details>
+<summary>显示答案</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Math.abs(x)     <span class="comment">// 绝对值</span></span><br><span class="line">Math.pow(x, y)  <span class="comment">// x^y，返回double</span></span><br><span class="line">Math.max(x, y)  <span class="comment">// 返回较大值</span></span><br><span class="line">Math.min(x, y)  <span class="comment">// 返回较小值</span></span><br></pre></td></tr></table></figure>
+
+</details>
+
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><iframe src="https://holmesjj.github.io/code-training/#/code/lengthOfN" width="100%" height="380" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+<details>
+<summary>显示答案</summary>
+
+<h3 id="n的长度"><a href="#n的长度" class="headerlink" title="n的长度"></a>n的长度</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> (<span class="type">int</span>) (Math.log10(n) + <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<h3 id="多层循环break的使用"><a href="#多层循环break的使用" class="headerlink" title="多层循环break的使用"></a>多层循环break的使用</h3><iframe src="https://holmesjj.github.io/code-training/#/code/breakInNestedLoops" width="100%" height="380" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+<details>
+<summary>显示答案</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">stop:</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (grid[i][j] == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">// 直接跳出两层循环</span></span><br><span class="line">            <span class="keyword">break</span> stop;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<h2 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h2><p>局部最优 &#x3D;&gt; 全局最优</p>
+<h2 id="ToDo"><a href="#ToDo" class="headerlink" title="ToDo"></a>ToDo</h2><ul>
+<li><code>TreeMap</code> 和 <code>HashMap</code> 的遍历和排序</li>
+<li>非递归Tree遍历</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Data-Structures-and-Algorithms/2022/12/05/avl-tree/" rel="prev" title="AVL树">
+      <i class="fa fa-chevron-left"></i> AVL树
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-number">1.</span> <span class="nav-text">二分查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">使用条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B8%E5%9E%8B%E4%BE%8B%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">典型例题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E9%80%92%E5%BD%92%E7%89%88%E4%BB%A3%E7%A0%81"><span class="nav-number">1.3.</span> <span class="nav-text">非递归版代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E7%89%88%E4%BB%A3%E7%A0%81"><span class="nav-number">1.4.</span> <span class="nav-text">递归版代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.5.</span> <span class="nav-text">复杂度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">2.</span> <span class="nav-text">二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86-BFS"><span class="nav-number">3.</span> <span class="nav-text">广度优先遍历(BFS)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B8%E5%9E%8B%E4%BE%8B%E9%A2%98-1"><span class="nav-number">3.1.</span> <span class="nav-text">典型例题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%9D%A1%E4%BB%B6-1"><span class="nav-number">3.2.</span> <span class="nav-text">使用条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">3.3.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86%E4%BB%A3%E7%A0%81"><span class="nav-number">3.4.</span> <span class="nav-text">树的层次遍历代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6-1"><span class="nav-number">3.5.</span> <span class="nav-text">复杂度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86-DFS"><span class="nav-number">4.</span> <span class="nav-text">深度优先遍历(DFS)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%9D%A1%E4%BB%B6-2"><span class="nav-number">4.1.</span> <span class="nav-text">使用条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="nav-number">4.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6-2"><span class="nav-number">4.3.</span> <span class="nav-text">复杂度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%AA%E6%9D%B0%E6%96%AF%E7%89%B9%E6%8B%89-Dijkstra%E2%80%99s"><span class="nav-number">5.</span> <span class="nav-text">迪杰斯特拉(Dijkstra’s)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%9D%A1%E4%BB%B6-3"><span class="nav-number">5.1.</span> <span class="nav-text">使用条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="nav-number">5.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6-3"><span class="nav-number">5.3.</span> <span class="nav-text">复杂度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E6%BA%AF"><span class="nav-number">6.</span> <span class="nav-text">回溯</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%9D%A1%E4%BB%B6-4"><span class="nav-number">6.1.</span> <span class="nav-text">使用条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="nav-number">6.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6-4"><span class="nav-number">6.3.</span> <span class="nav-text">复杂度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List-%E5%92%8C-Array"><span class="nav-number">7.</span> <span class="nav-text">List 和 Array</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#List-lt-Integer-gt-to-int"><span class="nav-number">7.1.</span> <span class="nav-text">List&lt;Integer&gt; to int[]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E8%BD%AC"><span class="nav-number">7.2.</span> <span class="nav-text">反转</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap"><span class="nav-number">8.</span> <span class="nav-text">HashMap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%8D%E5%8E%86"><span class="nav-number">8.1.</span> <span class="nav-text">遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B0%E5%BD%95%E5%85%83%E7%B4%A0%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0"><span class="nav-number">8.2.</span> <span class="nav-text">记录元素出现的次数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap-%E5%92%8C-List"><span class="nav-number">9.</span> <span class="nav-text">HashMap 和 List</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap-lt-String-String-gt-to-List-lt-String-gt"><span class="nav-number">9.1.</span> <span class="nav-text">HashMap&lt;String, String&gt; to List&lt;String&gt;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Math"><span class="nav-number">10.</span> <span class="nav-text">Math</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E5%AE%83"><span class="nav-number">11.</span> <span class="nav-text">其它</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#n%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="nav-number">11.1.</span> <span class="nav-text">n的长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E5%B1%82%E5%BE%AA%E7%8E%AFbreak%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">11.2.</span> <span class="nav-text">多层循环break的使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95"><span class="nav-number">12.</span> <span class="nav-text">贪心算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ToDo"><span class="nav-number">13.</span> <span class="nav-text">ToDo</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">JJ & TY</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Data-Structures-and-Algorithms/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JJ & TY</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/Data-Structures-and-Algorithms/lib/anime.min.js"></script>
+  <script src="/Data-Structures-and-Algorithms/lib/velocity/velocity.min.js"></script>
+  <script src="/Data-Structures-and-Algorithms/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Data-Structures-and-Algorithms/js/utils.js"></script>
+
+<script src="/Data-Structures-and-Algorithms/js/motion.js"></script>
+
+
+<script src="/Data-Structures-and-Algorithms/js/schemes/pisces.js"></script>
+
+
+<script src="/Data-Structures-and-Algorithms/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
